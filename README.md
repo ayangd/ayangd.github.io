@@ -1,1 +1,0 @@
-# ayangd.github.io
