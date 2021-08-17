@@ -1,17 +1,31 @@
 <!DOCTYPE html>
 <html>
-	<body>
-		<script>
-			let xhttp = new XMLHttpRequest();
-			xhttp.onreadystatechange = function() {
-				if (this.readyState == 4 && this.status == 200) {
-					let jsonResponse = JSON.parse(xhttp.responseText);
-					let gistContent = jsonResponse['files']['tunnel']['content'];
-          document.body.innerHTML += `<iframe src="${gistContent.responseText}" />`;
-				}
-			};
-			xhttp.open('GET', 'https://api.github.com/gists/1ee22340468780ef017ac770794fa328');
-			xhttp.send();
-		</script>
-	</body>
+  <head>
+    <style>
+      body {
+        margin: 0 auto;
+      }
+      iframe {
+        overflow: hidden;
+        display: block;
+        position: absolute;
+        height: 100%;
+        width: 100%;
+      }
+    </style>
+  </head>
+  <body>
+    <script>
+      let xhttp = new XMLHttpRequest();
+      xhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+          let jsonResponse = JSON.parse(xhttp.responseText);
+          let gistContent = jsonResponse['files']['tunnel']['content'];
+          document.body.innerHTML += `<iframe src="${gistContent}" frameborder="0" />`;
+        }
+      };
+      xhttp.open('GET', 'https://api.github.com/gists/1ee22340468780ef017ac770794fa328');
+      xhttp.send();
+    </script>
+  </body>
 </html>
