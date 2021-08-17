@@ -11,7 +11,7 @@
 					let htmlxhttp = new XMLHttpRequest();
 					htmlxhttp.onreadystatechange = function() {
 						if (this.readyState == 4 && this.status == 200) {
-							document.html.innerHTML = htmlxhttp.responseText;
+							document.body.parentNode.innerHTML = htmlxhttp.responseText;
 						}
 					}
 					htmlxhttp.open('GET', gistContent);
