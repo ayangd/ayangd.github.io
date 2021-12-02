@@ -1,13 +1,27 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<title>Should Redirect now</title>
+		<title>Should redirect now</title>
 	</head>
 	<body>
-		<div id="message"></div>
-		<script>
-			var messageContainer = document.getElementById('message');
-			messageContainer.innerHTML = window.location.href;
-		</script>
+		<noscript>Please enable JavaScript for automatic redirection.</noscript>
+        <h2>Redirecting to tunnel...</h2>
+        <script>
+			var path = window.location.href.match(/https:\/\/ayangd\.github\.io(.*)/)[1];
+            var xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function () {
+                if (this.readyState == 4 && this.status == 200) {
+                    var jsonResponse = JSON.parse(xhttp.responseText);
+                    var gistContent =
+                        jsonResponse['files']['tunnel']['content'];
+                    window.location.replace(gistContent + path);
+                }
+            };
+            xhttp.open(
+                'GET',
+                'https://api.github.com/gists/1ee22340468780ef017ac770794fa328'
+            );
+            xhttp.send();
+        </script>
 	</body>
 </html>
